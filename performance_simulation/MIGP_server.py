@@ -33,7 +33,7 @@ from miscellaneous.utilities import parse_args_server, get_pws_variations_serial
 
 ''' Values taken from Figure 11 second column of our paper dentoting av.g bucket size 
 for l = [16, 20] withblocklisting'''
-MEAN =  { 16: 1431876, 20: 10} #89492
+MEAN =  { 16: 1431876, 20: 89492}
 STD =   { 16: 30107, 20: 7513}
 
 
@@ -84,14 +84,17 @@ for similar_passwords in get_pws_variations_serial(password, n, []):
 
 # Now pushing random hashes...
 N = math.ceil(MEAN[PREFIX_LEN])
-keeper = os.urandom(32)           
-for i in range(N-2):
-    #print(i)
+keeper = os.urandom(32)
+K =  N-len(bucket_hashes_list)          
+for i in range(K):
+    if i% 1000000 == 0:
+        print(i)
     bucket_hashes_list.append(keeper)
-    bucket_hashes_byte_array+= keeper
-
-for pr_value in bucket_hashes_list:
-    bucket_hashes_byte_array += pr_value
+    
+bucket_hashes_byte_array = b''.join(bucket_hashes_list)
+print(len(bucket_hashes_byte_array))
+# for pr_value in bucket_hashes_list:
+#     bucket_hashes_byte_array += pr_value
 
 
 

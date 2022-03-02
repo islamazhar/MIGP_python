@@ -28,8 +28,8 @@ from miscellaneous.utilities import parse_args_server
 
 ''' Values taken from Figure 11 second column of our paper dentoting av.g bucket size 
 for l = [16, 20] withblocklisting'''
-MEAN =  { 16: 1431.876, 20: 10} #89492
-STD =   { 16: 30.107, 20: 7.513}
+MEAN =  { 16: 14318.76, 20: 894.92}
+STD =   { 16: 301.07, 20: 75.13}
 
 
 
@@ -78,7 +78,7 @@ add_to_bucket(username, password)
 # Now pushing random hashes...
 N = math.ceil(MEAN[PREFIX_LEN])
 keeper = os.urandom(32)           
-for i in range(N-2):
+for i in range(N-1):
     #print(i)
     bucket_hashes_list.append(keeper)
     bucket_hashes_byte_array+= keeper

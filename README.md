@@ -46,7 +46,7 @@ python3 post_client_MIGP.py --username Alice --password <any other passwords> $ 
 Here we simpliy assume user `Alice` password `123456` has been leaked and `123456$` is similar password (line 91, 92 in MIGP_server.py)
 ### Peformance of evaluation reported in Figure 12.
 We provide a bash script to reproduce Figure #12. Results may differ as the reported values are from EC2 instances in WAN conncetion (refer to the paper for details).
-cd to performance simulation and run `bash script.sh`. Note you may have to install `go` since WR-19 and WR-20 code borrow from the original authors is in go.  
+cd to performance simulation and run `bash script.sh`. This script will send API request to EC2 instancess running MIGP/IDB server's API. we Note you may have to install `go` since WR-19 and WR-20 code borrow from the original authors is in go.  
 # CloudFlare version of MIGP.
 https://github.com/cloudflare/migp-go
 # Contact

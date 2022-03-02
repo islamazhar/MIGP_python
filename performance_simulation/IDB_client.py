@@ -75,8 +75,8 @@ if __name__ == "__main__":
     API_call_time = time.time() - stat
     total += API_call_time
     write_performance_result(f'API call', API_call_time, timelogging) 
-    # print(f'=========size of the response is {len(resp.content)} bytes=======')
-    write_performance_result(f'B/w (MB)', len(resp.content), timelogging)  # + len(data)??
+    #print(f'=========size of the response is {len(resp.content)} bytes=======')
+    write_performance_result(f'B/w (MB)', (len(resp.content) + len(data))/1e6, timelogging)  # + len(data)??
         
         
 
@@ -108,8 +108,11 @@ if __name__ == "__main__":
     write_performance_result(f'total_{suffix}', total, timelogging) 
     #print(z_b[0])
     # time_file.write(f'after_call\t{after}\n')
-        
-    if exact_checking:
-        print("Exact password present has been leaked!")
+    if timelogging == 0:    
+        if exact_checking:
+            print("Exact password present has been leaked!")
+        else:
+            print("Exact  password has NOT been leaked!")
     else:
-        print("Exact  password has NOT been leaked!")
+        #print("Done with IDB API Call with params = ", opt)
+        pass
