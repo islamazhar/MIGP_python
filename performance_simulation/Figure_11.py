@@ -20,7 +20,7 @@ for col, val in zip(df["col_type"], df["time"]):
         #print(val)
         if len(cur_line.keys()) > 0:
             # print the line
-            #print(cur_line)
+            print(cur_line)
             for  col_name in column_names:
                 if col_name == "Method":
                     if col_name == "Finish!": break
@@ -28,13 +28,14 @@ for col, val in zip(df["col_type"], df["time"]):
                     #print("Method = ", cur_line["Method"])
                     dff[cur_line["Method"]] = []
                 else:
+                    print(col_name)
                     res = np.array(cur_line[col_name])
                     dff[cur_line["Method"]].append(np.mean(res))
                     #print(res)
                     #print("{} = {:.2f}".format(col_name, np.mean(res)))
                     
-            cur_line.clear()
             #print("=================================================================")
+        cur_line.clear()
         cur_line["Method"] = val
             
     else:
@@ -42,7 +43,8 @@ for col, val in zip(df["col_type"], df["time"]):
             cur_line[col] = []
         cur_line[col].append(float(val))
 
-print(dff)
+#print(dff)
+pd.options.display.float_format = "{:,.2f}".format
 dff = pd.DataFrame.from_dict(dff, orient='index', columns=column_names[1:len(column_names)])
 print(dff)
 

@@ -18,6 +18,7 @@ func main() {
 	var numThreads, params, rateLimiting int
 	var pointCompression bool
 	var pwd2check string
+	var suffix string
 
 	paramPtr := flag.Int("keyLength", 256, "224, 256, 384 or 512")
 	setSizePtr := flag.Int("setSize", 1024, "an int")
@@ -37,6 +38,11 @@ func main() {
 
 	if runtime.NumCPU() <=numThreads {
 		numThreads = runtime.NumCPU()
+	}
+	if rateLimiting == 0 {
+		suffix = "w/o rate limit" 
+	} else {
+		suffix = "w/ rate limit" 
 	}
 
 	//fmt.Printf("\n============ \n[OS] # of threads >>> %d/%d\n", numThreads, runtime.NumCPU())
@@ -95,7 +101,7 @@ func main() {
 	responseDecTime := timeRespDecEnd - timeRespDecStart
 
 	// fmt.Printf("[R] >>> QueryGen takes %.4f s\n", float32(queryGenTime)/1000000.0)
-	fmt.Printf("Query Prep\t%.2f\n",float32(queryGenTime)) // ms
+	fmt.Printf("Query Prep. %s\t%.2f\n",suffix, float32(queryGenTime)) // ms
 	fmt.Printf("B/w (MB)\t%.2f\n",(float32(queryMessageSize) + float32(responseMessageSize))/1000000) // MB
 	// fmt.Printf("[S] Query message size >>> %.2f KB\n", float32(queryMessageSize)/1000.0)
 	fmt.Printf("API call\t%.2f\n",float32(responseGenTime)) // ms
@@ -105,7 +111,7 @@ func main() {
 	// fmt.Printf("[R] >>> ResponseDec takes %.4f s\n", float32(responseDecTime)/1000000.0)
 	fmt.Printf("Finalize\t%.2f\n",float32(responseDecTime)) // ms
 	total := responseDecTime + responseGenTime + queryGenTime
-	fmt.Printf("total_%d\t%.2f\n",rateLimiting, float32(total)) // ms
+	fmt.Printf("total_%s\t%.2f\n",suffix, float32(total)) // ms
 	// fmt.Println("[R] >>> Result: ", result) // PMT result
 }
 
