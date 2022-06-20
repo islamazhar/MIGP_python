@@ -1,0 +1,13 @@
+marisa-trie==0.7.5
+matplotlib==3.1.3
+pickleshare==0.7.5
+numpy==1.18.1
+Flask==1.1.2
+word2keypress==1.0.16
+json5==0.9.1
+argon2-cffi==20.1.0
+cffi==1.14.4
+zxcvbn==4.4.28
+petlib==0.0.45
+virtualenv==20.2.2
+pybloomfiltermmap3
