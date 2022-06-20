@@ -87,7 +87,7 @@ prefix_len=16
 
 # WR19-Bloom
 prefix_len=20
-setSize=89492
+setSize=10 # Extrapolated setSize from Table from our paper.
 echo "WR19-Bloom,$prefix_len" >> ../results/performance_simulation.csv
 cd WR-19-20/pmt-go
 for rateLimiting in 0 1
@@ -110,5 +110,5 @@ done
 
 echo -e  "Method\tFinish!" >> ../results/performance_simulation.tsv
 # Generate the Figure 11
-# cd ../..
-# python3 Figure_11.py
+cd ../..
+python3 Figure_11.py

@@ -1,3 +1,7 @@
+
+# Disclaimer
+This code have been borrowed from https://github.com/k3coby/pmt-go and tweaked some part to extrapolate the results reported on our paper.
+
 # pmt-go
 
 ### Bloom-PMT and Cuckoo-PMT
