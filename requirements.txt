@@ -1,7 +1,7 @@
 marisa-trie==0.7.5
 matplotlib==3.1.3
 pickleshare==0.7.5
-numpy==1.18.1
+numpy==1.21
 Flask==1.1.2
 word2keypress==1.0.16
 json5==0.9.1
