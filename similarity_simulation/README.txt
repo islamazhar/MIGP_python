@@ -1,4 +1,4 @@
-Before running similarity simulations, copy the content of "models" folder shared using secured channel as 'artifact/models'
+Before running similarity simulations, copy the content of "models" folder (shared using secured channel) into 'artifact/models'
 To generate the values in figure, go to 'artifact/src'
 
 For Fig-4, run "bash fig4.sh"
