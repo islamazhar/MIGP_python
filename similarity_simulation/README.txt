@@ -1,3 +1,5 @@
+The required libraries are enlisted in requirement.txt
+
 Before running similarity simulations, copy the content of "models" folder (shared using secured channel) into 'artifact/models'
 To generate the values in figure, go to 'artifact/src'
 
