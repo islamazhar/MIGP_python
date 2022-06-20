@@ -12,6 +12,20 @@ MIGP (Might I Get Pwned) is a next generation password breach altering service t
 ## Downloading required files
 TODO:
 Since the files required to run the experiments are sensitve password leaks from 2019, we ask the reviwers to download the zipped file from the secret link provided in hotcrp and unzip them in a folder. In future we will request other researchers to fill up a form and then upon examination approved requests  will get access those sensitve leaks with proper discration.
+
+## Similarity simulation
+Training the Pass2Path models is computally expensive. Therefore, we train these models in GPU and generated the prediction files for required test_files, to run the experiments fast. The code for training the Pass2Path models is in "https://github.com/Bijeeta/credtweak/tree/master/credTweakAttack/".
+We also stored the sorted list of rules for Das-R and EDR models, ranked based on the breached dataset.
+
+### Producing Figure 4
+To generate the values of fig4, run `bash fig4.sh`
+
+### Producing Figure 5
+To generate the values of fig5, run `bash fig5.sh`
+
+### Producing Figure 6
+To generate the values of fig6, run `bash fig6.sh`
+
 ## Security simulation
 ### Producing Figure 8
 The security simulation is computationally expensive. It some of the runs took days. Therefore it is seperated into three phases. The output of the one phases is saved as numpy arrays and used in the next phases. We have provided output of the first and second phase as numpy arrays so that if reviwers wish to reproduce Figure 8 quickly they can go to thrid phase and run the `script.sh`. 
