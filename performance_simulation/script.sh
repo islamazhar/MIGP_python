@@ -87,28 +87,26 @@ prefix_len=16
 
 # WR19-Bloom
 prefix_len=20
-setSize=10 # Extrapolated setSize from Table from our paper.
+setSize=10
 echo "WR19-Bloom,$prefix_len" >> ../results/performance_simulation.csv
-cd WR-19-20/pmt-go
+cd WR-19-20/src/pmt-go
 for rateLimiting in 0 1
 do
         for i in {1..$M}
         do
-                go run WR_19.go -keyLength=256 -setSize=$setSize -numThreads=1 -enablePC=true -requesterInput="Simba" -rateLimiting=$rateLimiting
+                go run WR_19.go -keyLength=256 -setSize=$setSize -numThreads=1 -enablePC=true -requesterInput="Simba" -rateLimiting=$rateLimiting >> ../../../../results/performance_simulation.csv
         done
 done
-
 # WR20-Cuckoo
-echo "WR20-Cuckoo,$prefix_len" >> ../results/performance_simulation.csv
+echo "WR20-Cuckoo,$prefix_len" >> ../../../../results/performance_simulation.csv
 for rateLimiting in 0 1
 do
         for i in {1..$M}
         do
-                go run WR_20.go -keyLength=256 -setSize=$setSize -numThreads=1 -enablePC=true -requesterInput="Simba" -rateLimiting=$rateLimiting
+                go run WR_20.go -keyLength=256 -setSize=$setSize -numThreads=1 -enablePC=true -requesterInput="Simba" -rateLimiting=$rateLimiting >> ../../../../results/performance_simulation.csv
         done
 done
-
+cd ../../..
 echo -e  "Method\tFinish!" >> ../results/performance_simulation.tsv
 # Generate the Figure 11
-cd ../..
 python3 Figure_11.py
