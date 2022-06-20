@@ -1,7 +1,7 @@
 <h1 align="center">MIGP (Might I Get Pwned)</h1>
 
 ## Description
-MIGP (Might I Get Pwned) is a next generation password breach altering service to stop *credential tweaking attack*. This repository contains the code we used to for the security simulations and performance analysis, the results of which are recorded in the paper published in USENIX Security 2022. For details please refer to [our paper](https://arxiv.org/pdf/2109.14490.pdf).
+MIGP (Might I Get Pwned) is a next generation password breach altering service to prevent users from picking passwords that are very similar to their prior leaked passwords; such credentials are vulnerable to [*credential tweaking attacks*](https://pages.cs.wisc.edu/~chatterjee/papers/ppsm.pdf). This repository contains the code we used to for the security simulations and performance analysis of MIGP. The paper is published in USENIX Security 2022. For details please refer to [our paper](https://arxiv.org/pdf/2109.14490.pdf).
 
 
 ## Setting the environment
@@ -9,9 +9,10 @@ MIGP (Might I Get Pwned) is a next generation password breach altering service t
 [this](https://argon2-cffi.readthedocs.io/en/stable/api.html) argon2 implementation. Please Install `petlib` following the instructions from [here](https://github.com/gdanezis/petlib).
 - Create a vitrual environment `virtualenv MIGP_env` and activate the environment `source MIGP_env/bin/activate`
 - Install all required dependencies using `pip3 install -r requirements.txt`    
-## Downloading required files
+
+## Downloading required data files
 TODO:
-Since the files required to run the experiments are sensitve password leaks from 2019, we ask the reviwers to download the zipped file from the secret link provided in hotcrp and unzip them in a folder. In future we will request other researchers to fill up a form and then upon examination approved requests  will get access those sensitve leaks with proper discration.
+Since the files required to run the experiments are sensitive password leaks from 2019, we ask the artifact reviewers to download the zipped file from the secret link provided with the HotCRP submission and unzip them in a folder.  In the future, we will have a data-request form for other researchers to gain access to this data. 
 
 ## Similarity simulation
 Training the Pass2Path models is computally expensive. Therefore, we train these models in GPU and generated the prediction files for required test_files, to run the experiments fast. The code for training the Pass2Path models is in "https://github.com/Bijeeta/credtweak/tree/master/credTweakAttack/".
@@ -48,18 +49,19 @@ The security simulation is computationally expensive. It some of the runs took d
 
 ## Peformance simulation
 ### Protocol implementation on Figure 2:
-- Server side: cd to `performance_simulation/MIGP_server` and type `python3 MIGP_server.py`. By default rate limiting protection is off and prefix length 20 is used. To run the server with rate limiting option on type `python3 MIGP_server.py --rate_limitaintg 1`
-- Client side: After the server has completed preloading open a new terminal and cd to `performance_simulation/MIGP_server` and type the following commands
+- **MIGP Server**: Navigate to the `performance_simulation/MIGP_server` directory in the terminal and enter `python3 MIGP_server.py`. By default rate limiting protection is off and prefix length 20 is used. To run the server with rate limiting option enter: `python3 MIGP_server.py --rate_limitaintg 1`
+- **MIGP Client**: After the server has completed preloading open a new terminal, navigate to `performance_simulation/MIGP_server` and type the following commands
     - `python3 post_client_MIGP.py  --username <username> --password <password to  check> --prefix_length <prefix_length set on the server> --rate_limiting <limiting option set on the server>`
 
-For example if server is run for default options using `python3 MIGP_server.py` using the following commands to get different results on the client-side terminal.
+For example, if server is run with default options (without any commandline options, `python3 MIGP_server.py`), it initiates the leak database with only one leak entry `Alice,123456`). Now, you can use the client-side terminal in the following way and should get the following results:
 
 ```sh
 python3 post_client_MIGP.py --username Alice --password 123456 # will give exact password matching
 python3 post_client_MIGP.py --username Alice --password 123456$ # will give similar password matching
-python3 post_client_MIGP.py --username Alice --password <any other passwords> $ # will give not present in the leak
+python3 post_client_MIGP.py --username Alice --password deercrossing # or any other password, will give not present in the leak
 ```
 Here we simpliy assume user `Alice` password `123456` has been leaked and `123456$` is similar password (line 91, 92 in MIGP_server.py)
+
 ### Peformance of evaluation reported in Figure 12.
 We provide a bash script to reproduce Figure #12. Results may differ as the reported values are from EC2 instances in WAN conncetion (refer to the paper for details).
 cd to performance simulation and run `bash script.sh`. This script will send API request to EC2 instancess running MIGP/IDB server's API. we Note you may have to install `go` since WR-19 and WR-20 code borrow from the original authors is in go.  
