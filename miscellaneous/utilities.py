@@ -10,7 +10,7 @@ import numpy as np
 
 DIR = os.getcwd()
 SECURITY_SIMU_RES_FNAME =  os.path.join(DIR, "..", "results/security_simulation.tsv")
-PERFORMANCE_SIMU_RES_FNAME = os.path.join(DIR, "..","results/performance_simulation.csv")
+PERFORMANCE_SIMU_RES_FNAME = os.path.join(DIR, "..","results/performance_simulation.tsv")
 
 
 def filter_ws(w):

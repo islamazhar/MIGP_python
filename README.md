@@ -3,6 +3,9 @@
 ## Description
 MIGP (Might I Get Pwned) is a next generation password breach altering service to stop *credential tweaking attack*. This repository contains the code we used to for the security simulations and performance analysis, the results of which are recorded in the paper published in USENIX Security 2022. For details please refer to [our paper](https://arxiv.org/pdf/2109.14490.pdf).
 
+<!-- \fixme{Say clone using git submoudle} -->
+<!-- \fixme{Say this is a prototype} -->
+
 
 ## Setting the environment
 - For cypto operations on `spec256k`, we used [petlib](https://github.com/gdanezis/petlib) library, and for expensive hashing we used the 
