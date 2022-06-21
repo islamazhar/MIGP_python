@@ -16,11 +16,11 @@ from pathlib import Path
 from security_simulation.get_variations import parse_args
 from miscellaneous.utilities import get_block_list, filter_ws
 
-PRE = False
+PRE = True
 opt = parse_args()
 
 def get_count(DIR, breach_fname, n, bc, pass_trie, k, BL):
-    count_fname = f'/nobackup/mazharul/{breach_fname}.{n}.{bc}.{k}.counts.npz'
+    count_fname = f'data_files/counts_array/{n}.{bc}.{k}.counts.npz'
     fname = DIR / breach_fname
     
     if os.path.exists(count_fname) and PRE:
@@ -75,18 +75,20 @@ def get_guess_ranks(bl, k, qc):
     # Load Marise trie
     pass_trie = marisa_trie.Trie()
     #print(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.variations.trie')
-    pass_trie.load(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.variations.trie')
+    #pass_trie.load(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.variations.trie')
+    pass_trie.load(f'data_files/variations/{N}.{bl}.{k}.variations.trie')
     counts = get_count(DIR, breach_fname, N, bl, pass_trie, k, BL)
     #print(counts.shape)
     # Load variations and pws array
-    numpy_array = np.load(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.variations.npz')
+    #numpy_array = np.load(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.variations.npz')
+    numpy_array = np.load(f'data_files/variations/{N}.{bl}.{k}.variations.npz')
     pws_variations = numpy_array['var']
     pws = numpy_array['pws']
     pws_r = numpy_array['pws_r']
 
     # Create balls and writing to a file.
     
-    ball_fname = f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.balls.txt'
+    ball_fname = f'data_files/{N}.{bl}.{k}.balls.txt'
     if  os.path.exists(ball_fname) and PRE:
         print('Already exists just loading the password balls...')
         with open(ball_fname, 'rb') as handle:
@@ -99,7 +101,6 @@ def get_guess_ranks(bl, k, qc):
                 pickle.dump(ball_reverse, handle, pickle.HIGHEST_PROTOCOL)
     
     print('Done with creating password balls')
-    return 
     '''
     Blocklisted pws are inside ball_reverse and pws_variaitons array.
     The way they do not contribute to the weight of the pw ball is by 
@@ -109,7 +110,7 @@ def get_guess_ranks(bl, k, qc):
     
     
     # Given a list of pws generate the password sum?
-    password_sum_fname = f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.password_sum.npy'
+    password_sum_fname = f'data_files/{N}.{bl}.{k}.password_sum.npy'
     if  os.path.exists(password_sum_fname) and PRE:
         password_sum = np.load(password_sum_fname)
     else:
@@ -122,7 +123,7 @@ def get_guess_ranks(bl, k, qc):
         
     #generate greedy guess ranks.
     budget = 0
-    
+    guess_ranks = {}
     
     while budget < qc:
         max_ps = password_sum.argmax()
@@ -130,7 +131,8 @@ def get_guess_ranks(bl, k, qc):
         
         #np.savez_compressed(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.{budget}.password_sum.npz', guess=guess, password_sum=password_sum)
         # TODO: improve this there are too many files.
-        np.savez_compressed(f'{DIR}/Guess/{breach_fname}.{N}.{bl}.{k}.{budget}.password_sum.npz', guess=guess) #password_sum=password_sum) # Takes 70M space!
+        #np.savez_compressed(f'{DIR}/Guess/{breach_fname}.{N}.{bl}.{k}.{budget}.password_sum.npz', guess=guess) #password_sum=password_sum) # Takes 70M space!
+        guess_ranks[budget] = guess
         
         if budget < 30:
             print('Guess rank = {}; Guess pws {}; Weight of the ball of is {}'.format(budget, guess, password_sum.max()))
@@ -152,11 +154,18 @@ def get_guess_ranks(bl, k, qc):
             exit(1)
         '''        
         budget +=1
+    
+    with open(f'{GUESS_RANK_FNAME}/{bl}.{k}.{qc}', 'wb') as handle:
+        pickle.dump(guess_ranks, handle, pickle.HIGHEST_PROTOCOL)
+    
     return 
         
-DIR = Path("/pwdata/mazharul/password_research_dataset_Jan/")
+#DIR = Path("/pwdata/mazharul/password_research_dataset_Jan/")
+DIR = Path("data_files/")
 breach_fname = 'mixed_full_leak_data_40_1_with-pws-counts.txt'
 fname = DIR / breach_fname
+
+GUESS_RANK_FNAME = "data_files/guess_ranks"
 
 N = int(1e6)
 if __name__ == '__main__':

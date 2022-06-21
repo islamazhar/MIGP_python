@@ -111,8 +111,20 @@ def parse_args_server():
     
     return parser.parse_args()
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--qc', action='store', dest='qc', type=int,
+                        help='value of query budget', default=10)
+    parser.add_argument('--bl', action='store', dest='bl', type=int,
+                        help='number of blocklisted passwords')
+    parser.add_argument('--k', action='store', dest='k', type=int,
+                        help='number of variations to consider')
+    return parser.parse_args()
+
+
 def write_performance_result(col_name, val, timelogging):
     if timelogging == 1: 
         out_file = open(PERFORMANCE_SIMU_RES_FNAME, 'a+')
         out_file.write(f'{col_name}\t{val}\n')
         out_file.close()
+

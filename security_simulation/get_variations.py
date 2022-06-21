@@ -13,19 +13,11 @@ from word2keypress import Keyboard
 from multiprocessing import Pool
 from pathlib import Path
 
-from miscellaneous.utilities import get_pws_variations, get_pws, get_block_list
+from miscellaneous.utilities import get_pws_variations, get_pws, get_block_list , parse_args
 
 kb = Keyboard()
 
-def parse_args():
-    parser = argparse.ArgumentParser()
-    # parser.add_argument('--qc', action='store', dest='qc', type=int,
-    #                     help='value of query budget')
-    parser.add_argument('--bl', action='store', dest='bl', type=int,
-                        help='number of blocklisted passwords')
-    parser.add_argument('--k', action='store', dest='k', type=int,
-                        help='number of variations to consider')
-    return parser.parse_args()
+
 
 opt = parse_args()
 
@@ -71,12 +63,13 @@ def generate_variation_trie(DIR, breach_fname, N, k, bl):
             b[i] = T[w]
             b_reverse[T[w]] = i
     print(len(T))
-    T.save(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.variations.trie')
-    np.savez_compressed(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.variations.npz', var=a, pws=b, pws_r=b_reverse)
+    T.save(f'data_files/variations/{N}.{bl}.{k}.variations.trie')
+    np.savez_compressed(f'data_files/variations/{N}.{bl}.{k}.variations.npz', var=a, pws=b, pws_r=b_reverse)
 
 N = int(1e6)   # Number of passwords to consider
 
-DIR = Path("/pwdata/mazharul/password_research_dataset_Jan/")
+#DIR = Path("/pwdata/mazharul/password_research_dataset_Jan/")
+DIR = Path("data_files/")
 breach_fname = 'mixed_full_leak_data_40_1_with-pws-counts.txt'
 
 if __name__ == "__main__":

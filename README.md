@@ -6,8 +6,8 @@ MIGP (Might I Get Pwned) is a next generation password breach altering service t
 <!-- \fixme{Say clone using git submoudle} -->
 <!-- \fixme{Say this is a prototype} -->
 
-
 ## Setting the environment
+<!-- \fixme{Add conda env ins.} -->
 - For cypto operations on `spec256k`, we used [petlib](https://github.com/gdanezis/petlib) library, and for expensive hashing we used the 
 [this](https://argon2-cffi.readthedocs.io/en/stable/api.html) argon2 implementation. Please Install `petlib` following the instructions from [here](https://github.com/gdanezis/petlib).
 - Create a vitrual environment `virtualenv MIGP_env` and activate the environment `source MIGP_env/bin/activate`

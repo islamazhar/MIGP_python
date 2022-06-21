@@ -26,26 +26,23 @@ k = opt.k
 N = int(1e6)
 
 ''' file locations '''
-DIR = Path("/pwdata/mazharul/password_research_dataset_Jan/")
+# DIR = Path("/pwdata/mazharul/password_research_dataset_Jan/")
+DIR = Path("data_files/")
 breach_fname = 'mixed_full_leak_data_40_1_with-pws-counts.txt'
-# test_file = 'target_pws_25000.S2.v3.txt'
-#test_file = 'target_pws_25000.S2.txt' 
-#test_file = f'target_pws_25000.S2.{opt.bl}txt'  if opt.bl > 0 else DIR/f'target_pws_25000.S2.txt'
-#target_fname = DIR/f'target_pws_25000.S2.{opt.bl}txt'
-target_fname = DIR/f'target_pws_25000.S2.0txt' # add a flag here,
+target_fname = DIR/f'target_pws_25000.S2.txt'
 leak_fname = DIR / breach_fname
-#target_fname =  DIR / test_file
+
 
 ''' global vars '''
-ball_fname = f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.balls.txt'
+ball_fname = f'data_files/{N}.{bl}.{k}.balls.txt'
 print(ball_fname)
 with open(ball_fname, 'rb') as handle: ball_reverse = pickle.load(handle)
 print("Done loading file")
 pass_trie = marisa_trie.Trie()
-pass_trie.load(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.variations.trie')
+pass_trie.load(f'data_files/variations/{N}.{bl}.{k}.variations.trie')
 BL =  get_block_list(leak_fname, k, bl)
 count_array = get_count(DIR, breach_fname, N, bl,pass_trie,k,BL)
-numpy_array = np.load(f'/nobackup/mazharul/{breach_fname}.{N}.{bl}.{k}.variations.npz')
+numpy_array = np.load(f'data_files/variations/{N}.{bl}.{k}.variations.npz')
 pws_variations = numpy_array['var']
 
 def get_last_guess(guess_list):
@@ -111,10 +108,13 @@ def MIGP(tpws, qc, BL):
         
     success = np.zeros((len(tpws)), dtype=bool)
     
+    with open(f'data_files/guess_ranks/{bl}.{k}.1000', 'rb') as handle:
+                guesses = pickle.load(handle)
+                
     print('Starting MIGP....')       
     for budget in range(qc):
-        np_array = np.load(f'{DIR}/Guess/{breach_fname}.{N}.{bl}.{k}.{budget}.password_sum.npz')
-        guess = str(np_array['guess'])
+        
+        guess = guesses[budget]
         #password_sum = np_array['password_sum']
         print(f'Guess rank = {budget}; Guess pw = {guess}')
         

@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 
 fname = '../results/security_simulation.tsv'
 names = ["k", "bl", "qc", "success", "std"]
-df = pd.read_csv(fname, names=names)
+df = pd.read_csv(fname, names=names, sep='\t')
+#print(df)
 results = [ ["bl", "k", "qc=10", "qc=100", "qc=1000"] ]
 results.append("linebreak")  
 
