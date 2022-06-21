@@ -1,67 +1,101 @@
 
-Method	IDB-16
-Query Prep. w/o rate limit	0.00519871711730957
-API call	0.008730411529541016
-B/w (MB)	0.05725
-Finalize	1.9788742065429688e-05
-total_w/o rate limit	0.013948917388916016
-Query Prep. w/ rate limit	0.09859561920166016
-API call	0.006487131118774414
-B/w (MB)	0.05725
-Finalize	1.1444091796875e-05
-total_w/ rate limit	0.10509419441223145
-Method	IDB-20
-Query Prep. w/o rate limit	0.004773855209350586
-API call	0.009603023529052734
-B/w (MB)	0.05725
-Finalize	3.1948089599609375e-05
-total_w/o rate limit	0.01440882682800293
-Query Prep. w/ rate limit	0.09743523597717285
-API call	0.006722211837768555
-B/w (MB)	0.05725
-Finalize	1.1444091796875e-05
-total_w/ rate limit	0.10416889190673828
-Method	MIGP-Server-20
-Query Prep. w/o rate limit	0.010288238525390625
-API call	0.030596256256103516
-B/w (MB)	2864.076
-Finalize	0.008165597915649414
-total_w/o rate limit	0.049050092697143555
-Query Prep. w/ rate limit	1.0725064277648926
-API call	0.033823490142822266
-B/w (MB)	2864.076
-Finalize	0.012674331665039062
-total_w/ rate limit	1.119004249572754
-Method	MIGP-Client-16
-Query Prep. w/o rate limit	0.11865973472595215
-API call	0.12092280387878418
-B/w (MB)	2867.046
-Finalize	0.11336517333984375
-total_w/o rate limit	0.3529477119445801
-Query Prep. w/ rate limit	10.047104358673096
-API call	0.11368393898010254
-B/w (MB)	2867.046
-Finalize	0.11889457702636719
-total_w/ rate limit	10.279682874679565
-Method	MIGP-Client-20
-Query Prep. w/o rate limit	0.1201028823852539
-API call	0.06775832176208496
-B/w (MB)	2867.046
-Finalize	0.07230639457702637
-total_w/o rate limit	0.26016759872436523
-Query Prep. w/ rate limit	10.230926752090454
-API call	0.11220932006835938
-B/w (MB)	2867.046
-Finalize	0.11613821983337402
-total_w/ rate limit	10.459274291992188
-Query Prep. w/o rate limit	0.01744556427001953
-API call	0.03236722946166992
-B/w (MB)	2864.076
-Finalize	0.01210331916809082
-total_w/o rate limit	0.06191611289978027
-Query Prep. w/ rate limit	1.0512886047363281
-API call	0.02840256690979004
-B/w (MB)	2864.076
-Finalize	0.007941484451293945
-total_w/ rate limit	1.087632656097412
+Method	IDB l=16
+Query Prep. w/o rate limit	0.0021986961364746094
+API call	0.010381937026977539
+B/w (MB)	0.0286370625
+Finalize	0.00011038780212402344
+total_w/o rate limit	0.012691020965576172
+Query Prep. w/ rate limit	0.053629159927368164
+API call	0.00783848762512207
+B/w (MB)	0.0286370625
+Finalize	8.988380432128906e-05
+total_w/ rate limit	0.06155753135681152
+Method	IDB l=20
+Query Prep. w/o rate limit	0.0020835399627685547
+API call	0.0060651302337646484
+B/w (MB)	0.0017890625
+Finalize	1.5974044799804688e-05
+total_w/o rate limit	0.008164644241333008
+Query Prep. w/ rate limit	0.09106993675231934
+API call	0.006371021270751953
+B/w (MB)	0.0017890625
+Finalize	2.0742416381835938e-05
+total_w/ rate limit	0.09746170043945312
+Method	WR-19-Bloom l=20
+Query Prep. w/o rate limit	6.00
+B/w (MB)	0.04
+API call	67.00
+Finalize	0.00
+total_w/o rate limit	73.00
+Query Prep. w/ rate limit	104.00
+B/w (MB)	0.04
+API call	60.00
+Finalize	0.00
+total_w/ rate limit	164.00
+Method	WR20-Cuckoo l=20
+Query Prep. w/o rate limit	1.00
+B/w (MB)	0.00
+API call	30.00
+Finalize	1.00
+total_w/o rate limit	32.00
+Query Prep. w/ rate limit	98.00
+B/w (MB)	0.00
+API call	36.00
+Finalize	0.00
+total_w/ rate limit	134.00
+Method	MIGP-Server l=20
+Query Prep. w/o rate limit	0.07404232025146484
+API call	0.16691350936889648
+B/w (MB)	1.4319791875
+Finalize	0.4783611297607422
+total_w/o rate limit	0.7193169593811035
+Query Prep. w/ rate limit	6.920036315917969
+API call	0.25936222076416016
+B/w (MB)	1.4319791875
+Finalize	0.5328671932220459
+total_w/ rate limit	7.712265729904175
+Method	MIGP-Client l=16
+Query Prep. w/o rate limit	0.00780797004699707
+API call	0.016257524490356445
+B/w (MB)	0.089502375
+Finalize	0.009080171585083008
+total_w/o rate limit	0.03314566612243652
+Query Prep. w/ rate limit	0.5916745662689209
+API call	0.018761396408081055
+B/w (MB)	0.089502375
+Finalize	0.010112762451171875
+total_w/ rate limit	0.6205487251281738
+Method	MIGP-Client l=16
+Query Prep. w/o rate limit	0.009112358093261719
+API call	0.0176851749420166
+B/w (MB)	0.089502375
+Finalize	0.007529497146606445
+total_w/o rate limit	0.034327030181884766
+Query Prep. w/ rate limit	0.7238569259643555
+API call	0.019351482391357422
+B/w (MB)	0.089502375
+Finalize	0.009173154830932617
+total_w/ rate limit	0.7523815631866455
+Method	MIGP-Client l=20
+Query Prep. w/o rate limit	0.007214546203613281
+API call	0.014797210693359375
+B/w (MB)	0.089502375
+Finalize	0.007434368133544922
+total_w/o rate limit	0.029446125030517578
+Query Prep. w/ rate limit	0.5162994861602783
+API call	0.016611814498901367
+B/w (MB)	0.089502375
+Finalize	0.00789952278137207
+total_w/ rate limit	0.5408108234405518
+Method	MIGP-Hybrid l=20
+Query Prep. w/o rate limit	0.008119583129882812
+API call	0.09314250946044922
+B/w (MB)	1.431886375
+Finalize	0.05398154258728027
+total_w/o rate limit	0.1552436351776123
+Query Prep. w/ rate limit	0.6737477779388428
+API call	0.1159510612487793
+B/w (MB)	1.431886375
+Finalize	0.056971073150634766
+total_w/ rate limit	0.8466699123382568
 Method	Finish!

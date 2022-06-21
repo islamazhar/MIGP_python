@@ -76,7 +76,7 @@ if __name__ == "__main__":
     total += API_call_time
     write_performance_result(f'API call', API_call_time, timelogging) 
     #print(f'=========size of the response is {len(resp.content)} bytes=======')
-    write_performance_result(f'B/w (MB)', (len(resp.content) + len(data))/1e6, timelogging)  # + len(data)??
+    write_performance_result(f'B/w (MB)', (len(resp.content) + len(data))/32e6, timelogging)  # + len(data)??
         
         
 
