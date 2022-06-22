@@ -2,9 +2,9 @@
 set -xe
 
 
-max_threads=$1
+max_threads=2
 cur_theads=0
-for k in 10
+for k in $1
 do
     for qc in  $2
     do
