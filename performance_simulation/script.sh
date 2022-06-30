@@ -41,7 +41,7 @@ done
 # WR19-Bloom
 
 prefix_len=20
-setSize=20
+setSize=89492
 cd WR_19_20/src/pmt-go
 echo -e  "Method\tWR-19-Bloom l=$prefix_len" >> ../../../../results/performance_simulation.tsv
 for rateLimiting in 0 1
