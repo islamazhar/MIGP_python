@@ -78,6 +78,8 @@ def add_to_bucket(username, password, is_similar = 0):
 
 ''' Pre-computation: preparing the hashes stored on the server for req_type = 1'''
 add_to_bucket(username, password)
+add_to_bucket(username, password+'$', is_similar=1)
+
 for similar_passwords in get_pws_variations_serial(password, n, []):
     add_to_bucket(username, similar_passwords, is_similar = 1)
 
