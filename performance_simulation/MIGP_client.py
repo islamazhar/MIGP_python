@@ -89,7 +89,7 @@ if __name__ == "__main__":
     exact_checking = False
     similar_checking = False
     #print(ys)
-    while idx+33 < len(ys):
+    while idx < len(ys):
         y = ys[idx:idx+33]
         #print(y, i )
         idx +=33
@@ -107,6 +107,7 @@ if __name__ == "__main__":
             exact_checking = z_0 in z_b
         else:
             exact_checking = exact_checking or z_0 in z_b
+        i +=1
         
         
     Finalize_time = time.time() - stat

@@ -99,7 +99,7 @@ def parse_args_client():
     parser.add_argument('--serverURL', action='store', dest='serverURL',type=str, help='Server URL', default="http://0.0.0.0")
     parser.add_argument('--serverPORT', action='store', dest='serverPORT',type=int, help='serverPORT', default=8774)
     parser.add_argument('--timelogging', action='store', dest='timelogging',type=int, help='Log the time or not', default=0)
-    parser.add_argument('--n', action='store', dest='n',type=int, help='number of variations to consider on client side', default=10)
+    parser.add_argument('--n', action='store', dest='n',type=int, help='number of variations to consider on client side', default=1)
     return parser.parse_args()
 
 def parse_args_server():

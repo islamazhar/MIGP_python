@@ -79,7 +79,7 @@ def add_to_bucket(username, password, is_similar = 0):
 ''' Pre-computation: preparing the hashes stored on the server for req_type = 1'''
 add_to_bucket(username, password)
 for similar_passwords in get_pws_variations_serial(password, n, []):
-    add_to_bucket(username, password, is_similar = 1)
+    add_to_bucket(username, similar_passwords, is_similar = 1)
 
 
 # Now pushing random hashes...
@@ -114,7 +114,7 @@ def process_request(bucketID, pr_values):
     z_b = get_hashes_from_bucket(bucketID)
     resp = b''
     idx = 0
-    while idx+66 < len(pr_values):
+    while idx < len(pr_values):
         val = EcPt.from_binary(bytes.fromhex(pr_values[idx:idx+66]), G)
         y =  val.__rmul__(server_key) 
         y = bytes.fromhex(y.__str__())
