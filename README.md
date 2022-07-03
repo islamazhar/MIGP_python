@@ -3,20 +3,16 @@
 ## Description
 MIGP (Might I Get Pwned) is a next generation password breach altering service to prevent users from picking passwords that are very similar to their prior leaked passwords; such credentials are vulnerable to [*credential tweaking attacks*](https://pages.cs.wisc.edu/~chatterjee/papers/ppsm.pdf). This repository contains the code we used to for the security simulations and performance analysis of MIGP. The paper is published in USENIX Security 2022. For details please refer to [our paper](https://arxiv.org/pdf/2109.14490.pdf).
 
-<!-- \fixme{Say clone using git submoudle} -->
-<!-- \fixme{Say this is a prototype} -->
+[Disclaimer] This repository is a proof-of-concept prototype. Please review it carefully before using it for any purposes.
+
 
 ## Setting the environment
-<!-- \fixme{Add conda env ins.} -->
 - For cypto operations on `spec256k`, we used [petlib](https://github.com/gdanezis/petlib) library, and for expensive hashing we used the 
 [this](https://argon2-cffi.readthedocs.io/en/stable/api.html) argon2 implementation. Please Install `petlib` following the instructions from [here](https://github.com/gdanezis/petlib).
-- Create a vitrual environment `virtualenv MIGP_env` and activate the environment `source MIGP_env/bin/activate`
-- Install all required dependencies using `pip3 install -r requirements.txt`    
-
+- ALl required packages are listed in the `requirments.txt` file. We encourage creating virtual environmentsto (using `conda` or `virtualenv`). 
+- `WR_19` and `WR_20` relies on GO (version 1.15).
 ## Downloading required data files
-TODO:
-Since the files required to run the experiments are sensitive password leaks from 2019, we ask the artifact reviewers to download the zipped file from the secret link provided with the HotCRP submission and unzip them in a folder.  In the future, we will have a data-request form for other researchers to gain access to this data. 
-
+Since the files required to run the experiments are sensitive password leaks from 2019, if you need access to datasets please write to us. We can grant access to datasets after properly reviwering the request.
 ## Similarity simulation
 Training the Pass2Path models is computally expensive. Therefore, we train these models in GPU and generated the prediction files for required test_files, to run the experiments fast. The code for training the Pass2Path models is in "https://github.com/Bijeeta/credtweak/tree/master/credTweakAttack/".
 We also stored the sorted list of rules for Das-R and EDR models, ranked based on the breached dataset.
@@ -31,27 +27,15 @@ To generate the values of fig5, run `bash fig5.sh`
 To generate the values of fig6, run `bash fig6.sh`
 
 ## Security simulation
-### Producing Figure 8
-The security simulation is computationally expensive. It some of the runs took days. Therefore it is seperated into three phases. The output of the one phases is saved as numpy arrays and used in the next phases. We have provided output of the first and second phase as numpy arrays so that if reviwers wish to reproduce Figure 8 quickly they can go to thrid phase and run the `script.sh`. 
-- First Phase:
-    We first generate $k$ variations of each password and saved them as numpy arrays using the command `python3 get_vairations.py --bl <bl> --k <k>`. Here  `bl` = number of blocklisted password $\in (0, 10, 100, 1000, 10000)$, and k = number of password variations to consider $\in (10, 100)$. The output of run is saved as a numpy array having the following 
-    naming convention `varations.{qc}.{bl}.pws`
-- Second Phase:
-    Using the variations of passwords  we generate top `qc` $\in (10, 100, 100)$ guess using he command `python3 get_guess_ranks.py --bl <bl> --k <k> --qc <qc>`. 
-- Third Phase:
-    Now that we have the top `qc` guesses, we can calcuate the attack success rates using target passwords. To achieve this do the following steps.
-    - go to security_simuation folder `cd security_simulation` 
-    - Point `breach_fname` to the location where `mixed_full_leak_data_40_1_with-pws-counts.txt` file is.
-    - Point `target_fname` to the location where `target_pws_25000.S2.0txt` file. 
-    - Run `bash script.sh <number_of_threads> <ql>` to generate each column of Figure 6. Note as previously mentioned it takes a lot of time to run the simulation espcially for `qc=1000`. Hence we recommand the reviwers to run not more than three threads at a time for `qc=1000` depending on machine configuration. 
-    For our linux machine if we run more than three threads it shows memory out of error. For `qc=10` runs fairely quickly and for `qc=100` it may take more than 1 hour. 
+Security simulation is computationally expensive. Some of the simulation may took days. Therefore it is seperated into three phases. The output of the one phases is saved as numpy arrays and used in the next phases. 
+- `bash  script_step_1.sh`. // This will create password variations. You can skip this one as we already provide the variations file inside `data_files` folder
+- `bash script_step_2.sh`. // This create the top 10^3 guess ranks. We have also generated the guess ranks and balls of each password in the `data_files` folder. [skip if you want] 
+- Finally, run `bash script_step_3.sh <n> <qc>` to generate the row corresponding to row  with value `n` and `qc` in Figure 8. The results will be saved in `results/security_sumulation.tsv` file. This part may long time as for n =100 and q_c=10^3 it took us 12 hours to complete the simulation. 
+- After the step 3 has been done for each `n` and `qc`, run `python3.8 Figure 9.py`. It should generate Figure 8. If some values for `n` and `qc` the values has not been generated it will show blank. 
 
-### Producing Figure 9:
-  - go to Figure 9 folder under security_simulation `cd Figure_9`
-  - run `bash script.sh`. You can a new a `Figure_9.jpg`.
+The results will be saved at `results/security_simulation.tsv` file. Run ``
 
-## Peformance simulation
-### Protocol implementation on Figure 2:
+## Running the MIGP protocol 
 - **MIGP Server**: Navigate to the `performance_simulation/MIGP_server` directory in the terminal and enter `python3 MIGP_server.py`. By default rate limiting protection is off and prefix length 20 is used. To run the server with rate limiting option enter: `python3 MIGP_server.py --rate_limitaintg 1`
 - **MIGP Client**: After the server has completed preloading open a new terminal, navigate to `performance_simulation/MIGP_server` and type the following commands
     - `python3 post_client_MIGP.py  --username <username> --password <password to  check> --prefix_length <prefix_length set on the server> --rate_limiting <limiting option set on the server>`
@@ -63,11 +47,8 @@ python3 post_client_MIGP.py --username Alice --password 123456 # will give exact
 python3 post_client_MIGP.py --username Alice --password 123456$ # will give similar password matching
 python3 post_client_MIGP.py --username Alice --password deercrossing # or any other password, will give not present in the leak
 ```
-Here we simpliy assume user `Alice` password `123456` has been leaked and `123456$` is similar password (line 91, 92 in MIGP_server.py)
+Here we simpliy assume user `Alice` password `123456` has been leaked and `123456$` is a similar password of `123456` vulnerable to credential tweaking attack (line 91, 92 in MIGP_server.py)
 
-### Peformance of evaluation reported in Figure 12.
-We provide a bash script to reproduce Figure #12. Results may differ as the reported values are from EC2 instances in WAN conncetion (refer to the paper for details).
-cd to performance simulation and run `bash script.sh`. This script will send API request to EC2 instancess running MIGP/IDB server's API. we Note you may have to install `go` since WR-19 and WR-20 code borrow from the original authors is in go.  
 # CloudFlare version of MIGP.
 https://github.com/cloudflare/migp-go
 # Contact
@@ -78,7 +59,7 @@ If you use any part of our code or paper please cite our paper.
 @inproceedings{pal2021might,
   title={{Might I Get Pwned: A Second Generation Password Breach Alerting Service}},
   author={Pal, Bijeeta and Islam, Mazharul and Sanusi, Marina and Valenta, Luke and Wood, Chris and Whalen, Tara and Sullivan, Nick and Ristenpart, Thomas and Chatterjee, Rahul},
-  booktitle={31th $\{$USENIX$\}$ Security Symposium ($\{$USENIX$\}$ Security 22)},
+  booktitle={31th {USENIX} Security Symposium ({USENIX} Security 22)},
   year={2022},
   organization={USENIX}
 }

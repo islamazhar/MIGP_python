@@ -130,3 +130,5 @@ dmypy.json
 
 # Do not push the datasets folder
 security_simulation/data_files/*
+security_simulation/data_files.tar.gz
+.vscode
