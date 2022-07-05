@@ -43,11 +43,11 @@ The results will be saved at `results/security_simulation.tsv` file. Run ``
 For example, if server is run with default options (without any commandline options, `python3 MIGP_server.py`), it initiates the leak database with only one leak entry `Alice,123456`). Now, you can use the client-side terminal in the following way and should get the following results:
 
 ```sh
-python3 post_client_MIGP.py --username Alice --password 123456 # will give exact password matching
-python3 post_client_MIGP.py --username Alice --password 123456$ # will give similar password matching
-python3 post_client_MIGP.py --username Alice --password deercrossing # or any other password, will give not present in the leak
+python3 MIGP_client.py --username Alice --password 123456 # will give exact password matching
+python3 MIGP_client.py --username Alice --password 123456$ # will give similar password matching
+python3 MIGP_client.py --username Alice --password deercrossing # or any other password, will give not present in the leak
 ```
-Here we simpliy assume user `Alice` password `123456` has been leaked and `123456$` is a similar password of `123456` vulnerable to credential tweaking attack (line 91, 92 in MIGP_server.py)
+Here we simpliy assume user `Alice` password `123456` has been leaked and `123456$` is a similar password of `123456` vulnerable to credential tweaking attack (line 81 in MIGP_server.py)
 
 # CloudFlare version of MIGP.
 https://github.com/cloudflare/migp-go

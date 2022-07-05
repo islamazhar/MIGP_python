@@ -31,8 +31,8 @@ from flask import request
 from miscellaneous.hash_functions import sha256bin, _argon2
 from miscellaneous.utilities import parse_args_server, get_pws_variations_serial
 
-''' Values taken from Figure 11 second column of our paper dentoting av.g bucket size 
-for l = [16, 20] withblocklisting'''
+''' Values taken from Figure 11 second column of our paper denoting av.g bucket size 
+for l = [16, 20] with block listing'''
 MEAN =  { 16: 1431876, 20: 89492}
 STD =   { 16: 30107, 20: 7513}
 

@@ -22,3 +22,4 @@ tikzplotlib==0.8.2
 typing_extensions==4.1.1
 word2keypress==1.0.16
 zipp==3.6.0
+pickle5 
