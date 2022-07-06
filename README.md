@@ -33,7 +33,8 @@ Security simulation is computationally expensive. Some of the simulation may too
 - Finally, run `bash script_step_3.sh <n> <qc>` to generate the row corresponding to row  with value `n` and `qc` in Figure 8. The results will be saved in `results/security_sumulation.tsv` file. This part may long time as for n =100 and q_c=10^3 it took us 12 hours to complete the simulation. 
 - After the step 3 has been done for each `n` and `qc`, run `python3.8 Figure 9.py`. It should generate Figure 8. If some values for `n` and `qc` the values has not been generated it will show blank. 
 
-The results will be saved at `results/security_simulation.tsv` file. Run ``
+The results of each run will be saved at `results/security_simulation.tsv`. Run `python3.8 Figure_8.py`
+to generate the Figure 8. If some values for `n` and `qc` the values has not been generated it will show blank.
 
 ## Running the MIGP protocol 
 - **MIGP Server**: Navigate to the `performance_simulation/MIGP_server` directory in the terminal and enter `python3 MIGP_server.py`. By default rate limiting protection is off and prefix length 20 is used. To run the server with rate limiting option enter: `python3 MIGP_server.py --rate_limitaintg 1`
