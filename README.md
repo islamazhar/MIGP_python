@@ -3,7 +3,7 @@
 ## Description
 MIGP (Might I Get Pwned) is a next-generation password breach altering service to prevent users from picking passwords that are very similar to their prior leaked passwords; such credentials are vulnerable to [*credential tweaking attacks*](https://pages.cs.wisc.edu/~chatterjee/papers/ppsm.pdf). This repository contains the code we used for the security simulations and performance analysis of MIGP. The paper is published in USENIX Security 2022. For details please refer to [our paper](https://arxiv.org/pdf/2109.14490.pdf).
 
-[Disclaimer] This repository is a proof-of-concept prototype. Please review it carefully before using it for any purposes.
+**[Disclaimer]** This repository is a proof-of-concept prototype. Please review it carefully before using it for any purposes.
 
 
 ## Setting the environment
