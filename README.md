@@ -9,7 +9,7 @@ MIGP (Might I Get Pwned) is a next generation password breach altering service t
 ## Setting the environment
 - For cypto operations on `secp256k`,  we used [petlib](https://github.com/gdanezis/petlib) library, and for expensive hashing we used  
 [this](https://argon2-cffi.readthedocs.io/en/stable/api.html) argon2 implementation. Please install `petlib` following the instructions from [here](https://github.com/gdanezis/petlib).
-- ALl required packages are listed in the `requirments.txt` file. We encourage creating virtual environments before running the experiments (using `conda` or `virtualenv`). 
+- All required packages are listed in the `requirments.txt` file. We encourage creating virtual environments before running the experiments (using `conda` or `virtualenv`). 
 - `WR_19` and `WR_20` relies on GO (version 1.15).
 ## Downloading required data files
 Since the files required to run the experiments are sensitive password leaks from 2019, if you need access to datasets please write to us. We can grant access to datasets after properly reviwering the request.
