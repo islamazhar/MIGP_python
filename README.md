@@ -1,15 +1,15 @@
 <h1 align="center">MIGP (Might I Get Pwned)</h1>
 
 ## Description
-MIGP (Might I Get Pwned) is a next generation password breach altering service to prevent users from picking passwords that are very similar to their prior leaked passwords; such credentials are vulnerable to [*credential tweaking attacks*](https://pages.cs.wisc.edu/~chatterjee/papers/ppsm.pdf). This repository contains the code we used to for the security simulations and performance analysis of MIGP. The paper is published in USENIX Security 2022. For details please refer to [our paper](https://arxiv.org/pdf/2109.14490.pdf).
+MIGP (Might I Get Pwned) is a next generation password breach altering service to prevent users from picking passwords that are very similar to their prior leaked passwords; such credentials are vulnerable to [*credential tweaking attacks*](https://pages.cs.wisc.edu/~chatterjee/papers/ppsm.pdf). This repository contains the code we used for the security simulations and performance analysis of MIGP. The paper is published in USENIX Security 2022. For details please refer to [our paper](https://arxiv.org/pdf/2109.14490.pdf).
 
 [Disclaimer] This repository is a proof-of-concept prototype. Please review it carefully before using it for any purposes.
 
 
 ## Setting the environment
-- For cypto operations on `spec256k`, we used [petlib](https://github.com/gdanezis/petlib) library, and for expensive hashing we used the 
-[this](https://argon2-cffi.readthedocs.io/en/stable/api.html) argon2 implementation. Please Install `petlib` following the instructions from [here](https://github.com/gdanezis/petlib).
-- ALl required packages are listed in the `requirments.txt` file. We encourage creating virtual environmentsto (using `conda` or `virtualenv`). 
+- For cypto operations on `secp256k`,  we used [petlib](https://github.com/gdanezis/petlib) library, and for expensive hashing we used  
+[this](https://argon2-cffi.readthedocs.io/en/stable/api.html) argon2 implementation. Please install `petlib` following the instructions from [here](https://github.com/gdanezis/petlib).
+- ALl required packages are listed in the `requirments.txt` file. We encourage creating virtual environments before running the experiments (using `conda` or `virtualenv`). 
 - `WR_19` and `WR_20` relies on GO (version 1.15).
 ## Downloading required data files
 Since the files required to run the experiments are sensitive password leaks from 2019, if you need access to datasets please write to us. We can grant access to datasets after properly reviwering the request.
