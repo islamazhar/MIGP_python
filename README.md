@@ -29,7 +29,7 @@ To generate the values of fig6, run `bash fig6.sh`
 ## Security simulation
 Security simulation is computationally expensive. Some of the simulation may took days. Therefore it is seperated into three phases. The output of the one phases is saved as numpy arrays and used in the next phases. 
 - `bash  script_step_1.sh`. // This will create password variations. You can skip this one as we already provide the variations file inside `data_files` folder
-- `bash script_step_2.sh`. // This create the top 10^3 guess ranks. We have also generated the guess ranks and balls of each password in the `data_files` folder. [skip if you want] 
+- `bash script_step_2.sh`. // This creates the top 10^3 guess ranks. We have also generated the guess ranks and balls of each password in the `data_files` folder. [skip if you want] 
 - Finally, run `bash script_step_3.sh <n> <qc>` to generate the row corresponding to row  with value `n` and `qc` in Figure 8. The results will be saved in `results/security_sumulation.tsv` file. This part may long time as for n =100 and q_c=10^3 it took us 12 hours to complete the simulation. 
 - After the step 3 has been done for each `n` and `qc`, run `python3.8 Figure 9.py`. It should generate Figure 8. If some values for `n` and `qc` the values has not been generated it will show blank. 
 
