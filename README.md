@@ -58,7 +58,7 @@ If you use any part of our code or paper please cite our paper.
 ```
 @inproceedings{pal2021might,
   title={{Might I Get Pwned: A Second Generation Password Breach Alerting Service}},
-  author={Pal, Bijeeta and Islam, Mazharul and Bohuk, Marina Sanusi   and Valenta, Luke and Wood, Chris and Whalen, Tara and Sullivan, Nick and Ristenpart, Thomas and Chatterjee, Rahul},
+  author={Pal, Bijeeta and Islam, Mazharul and Bohuk, Marina Sanusi and Valenta, Luke and Wood, Chris and Whalen, Tara and Sullivan, Nick and Ristenpart, Thomas and Chatterjee, Rahul},
   booktitle={31th {USENIX} Security Symposium ({USENIX} Security 22)},
   year={2022},
   organization={USENIX}
